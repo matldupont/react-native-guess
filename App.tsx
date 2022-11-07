@@ -1,17 +1,18 @@
-import * as React from "react";
-import { LinearGradient } from "expo-linear-gradient";
+import * as React from 'react';
+import { LinearGradient } from 'expo-linear-gradient';
 import {
   ImageBackground,
   Platform,
   SafeAreaView,
   StyleSheet,
-} from "react-native";
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import { StartGameScreen } from "./screens/StartGameScreen";
-import { GameScreen } from "./screens/GameScreen";
-import { Colors } from "./constants/color";
-import { GameOverScreen } from "./screens/GameOverScreen";
+} from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { StartGameScreen } from './screens/StartGameScreen';
+import { GameScreen } from './screens/GameScreen';
+import { Colors } from './constants/color';
+import { GameOverScreen } from './screens/GameOverScreen';
+import { StatusBar } from 'expo-status-bar';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -21,8 +22,8 @@ export default function App() {
   const [rounds, setRounds] = React.useState(0);
 
   const [fontsLoaded] = useFonts({
-    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
   });
 
   const handleNumberSubmit = (num: number) => {
@@ -67,20 +68,23 @@ export default function App() {
   }
 
   return (
-    <LinearGradient
-      colors={[Colors.primary700, Colors.accent500]}
-      style={styles.rootScreen}
-      onLayout={onFontsLoaded}
-    >
-      <ImageBackground
-        source={require("./assets/images/background.png")}
-        resizeMode="cover"
+    <>
+      <StatusBar style="light" />
+      <LinearGradient
+        colors={[Colors.primary700, Colors.accent500]}
         style={styles.rootScreen}
-        imageStyle={styles.backgroundImage}
+        onLayout={onFontsLoaded}
       >
-        <SafeAreaView style={styles.screenContainer}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </LinearGradient>
+        <ImageBackground
+          source={require('./assets/images/background.png')}
+          resizeMode="cover"
+          style={styles.rootScreen}
+          imageStyle={styles.backgroundImage}
+        >
+          <SafeAreaView style={styles.screenContainer}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </LinearGradient>
+    </>
   );
 }
 
